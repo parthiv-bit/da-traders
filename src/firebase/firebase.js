@@ -31,6 +31,9 @@ if (isFirebaseConfigured) {
     auth = getAuth(app);
     db = getFirestore(app);
     storage = getStorage(app);
+    if (import.meta.env.DEV) {
+      console.info(`[Firebase] Connected to project: ${firebaseConfig.projectId} (Mode: ${import.meta.env.MODE})`);
+    }
   } catch (err) {
     console.error('[Firebase] Initialization error:', err);
   }

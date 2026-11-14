@@ -5,7 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "dev:prod": "vite --mode production",
+    "build": "vite build --mode production",
+    "build:dev": "vite build --mode development",
+    "build:prod": "vite build --mode production",
+    "deploy:dev": "npm run build:dev && firebase deploy --only hosting,firestore:rules --project development",
+    "deploy:prod": "npm run build:prod && firebase deploy --only hosting,firestore:rules --project production",
     "lint": "oxlint",
     "preview": "vite preview"
   },

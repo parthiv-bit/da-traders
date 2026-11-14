@@ -111,6 +111,78 @@ firebase deploy --only firestore:rules,storage,hosting
 
 ---
 
+## 🌐 Multi-Environment Architecture (Production vs Development)
+
+This project has two strictly isolated environments:
+
+| Environment | Git Branch | Firebase Project | Live URL | Purpose |
+| :--- | :--- | :--- | :--- | :--- |
+| **Production** | `main` | `da-traders` | [https://da-traders.web.app](https://da-traders.web.app) | Real customers, verified orders & live database |
+| **Development** | `development` | `da-traders-dev` | [https://da-traders-dev.web.app](https://da-traders-dev.web.app) | Testing features, staging changes & sandbox database |
+
+### Environment Configuration Files
+- `.env.development`: Connected to `da-traders-dev` (loaded during `npm run dev` and `npm run build:dev`).
+- `.env.production`: Connected to `da-traders` (loaded during `npm run build:prod`).
+- `.firebaserc`: Maps project aliases (`production` -> `da-traders`, `development` -> `da-traders-dev`).
+
+---
+
+## 💻 Daily Development & Deployment Workflow
+
+### 1. Daily Development (Working on features)
+Always do day-to-day development work on the `development` branch:
+```bash
+# Switch to development branch
+git checkout development
+
+# Run local development server (automatically connects to da-traders-dev)
+npm run dev
+```
+
+### 2. Testing & Building Development Bundle
+```bash
+# Build the development bundle
+npm run build:dev
+
+# Test the built files locally
+npm run preview
+```
+
+### 3. Deploying to Development (Staging)
+```bash
+# Deploys hosting and security rules to da-traders-dev
+npm run deploy:dev
+```
+Review your deployed changes at: [https://da-traders-dev.web.app](https://da-traders-dev.web.app)
+
+### 4. Merging Approved Changes into Production (`main`)
+Once changes are thoroughly tested and verified on `da-traders-dev`:
+```bash
+# 1. Commit and push any development work
+git add .
+git commit -m "feat: your completed feature"
+git push origin development
+
+# 2. Switch to main branch
+git checkout main
+git pull origin main
+
+# 3. Merge development into main
+git merge development
+
+# 4. Push main to remote repository
+git push origin main
+```
+
+### 5. Deploying to Production
+```bash
+# Builds production bundle and deploys to da-traders
+npm run deploy:prod
+```
+Verify the live production website at: [https://da-traders.web.app](https://da-traders.web.app)
+
+---
+
 ## 🛠️ Verification & Build Commands
 
 ```bash

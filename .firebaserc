@@ -1,6 +1,7 @@
 {
   "projects": {
-    "default": "da-traders"
+    "default": "da-traders",
+    "production": "da-traders",
+    "development": "da-traders-dev"
   }
 }
-
