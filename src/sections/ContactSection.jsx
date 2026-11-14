@@ -120,7 +120,7 @@ export default function ContactSection({ onShowToast, preselectedService }) {
         {/* 2. Quick Action & Contacts Strip */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
           {/* Quick Call */}
-          <div className="p-4 rounded-3xl bg-white border border-paint-border shadow-2xs flex items-center gap-3.5 hover:border-paint-terracotta/40 transition-colors">
+          <div className="p-4 rounded-3xl bg-white border border-paint-border border-l-4 border-l-paint-terracotta shadow-soft hover:shadow-card hover:-translate-y-1 transition-all duration-300 flex items-center gap-3.5">
             <div className="w-11 h-11 rounded-2xl bg-paint-surfaceAlt flex items-center justify-center text-paint-terracotta shrink-0 border border-paint-border">
               <Phone className="w-5 h-5" />
             </div>
@@ -133,7 +133,7 @@ export default function ContactSection({ onShowToast, preselectedService }) {
           </div>
 
           {/* Quick WhatsApp */}
-          <div className="p-4 rounded-3xl bg-white border border-paint-border shadow-2xs flex items-center gap-3.5 hover:border-emerald-400 transition-colors">
+          <div className="p-4 rounded-3xl bg-white border border-paint-border border-l-4 border-l-emerald-500 shadow-soft hover:shadow-card hover:-translate-y-1 transition-all duration-300 flex items-center gap-3.5">
             <div className="w-11 h-11 rounded-2xl bg-emerald-50 flex items-center justify-center text-emerald-600 shrink-0 border border-emerald-100">
               <MessageSquare className="w-5 h-5" />
             </div>
@@ -151,7 +151,7 @@ export default function ContactSection({ onShowToast, preselectedService }) {
           </div>
 
           {/* Quick Email */}
-          <div className="p-4 rounded-3xl bg-white border border-paint-border shadow-2xs flex items-center gap-3.5 hover:border-paint-terracotta/40 transition-colors">
+          <div className="p-4 rounded-3xl bg-white border border-paint-border border-l-4 border-l-blue-400 shadow-soft hover:shadow-card hover:-translate-y-1 transition-all duration-300 flex items-center gap-3.5">
             <div className="w-11 h-11 rounded-2xl bg-paint-surfaceAlt flex items-center justify-center text-paint-terracotta shrink-0 border border-paint-border">
               <Mail className="w-5 h-5" />
             </div>
@@ -164,7 +164,7 @@ export default function ContactSection({ onShowToast, preselectedService }) {
           </div>
 
           {/* Quick Hours */}
-          <div className="p-4 rounded-3xl bg-white border border-paint-border shadow-2xs flex items-center gap-3.5 hover:border-paint-terracotta/40 transition-colors">
+          <div className="p-4 rounded-3xl bg-white border border-paint-border border-l-4 border-l-amber-400 shadow-soft hover:shadow-card hover:-translate-y-1 transition-all duration-300 flex items-center gap-3.5">
             <div className="w-11 h-11 rounded-2xl bg-paint-surfaceAlt flex items-center justify-center text-paint-charcoal shrink-0 border border-paint-border">
               <Clock className="w-5 h-5" />
             </div>
@@ -181,7 +181,7 @@ export default function ContactSection({ onShowToast, preselectedService }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
           {/* Left Column (6 Cols): Location, Hours & Live Google Map */}
-          <div className="lg:col-span-6 bg-white rounded-4xl p-6 sm:p-8 lg:p-10 border border-paint-border shadow-card flex flex-col justify-between space-y-6">
+          <div className="lg:col-span-6 bg-white rounded-4xl p-6 sm:p-8 lg:p-10 border border-paint-border shadow-2xl ring-1 ring-paint-border/30 flex flex-col justify-between space-y-6">
             
             <div className="space-y-6">
               {/* Card Header */}
@@ -297,7 +297,7 @@ export default function ContactSection({ onShowToast, preselectedService }) {
           </div>
 
           {/* Right Column (6 Cols): Inquiry & Service Booking Form */}
-          <div className="lg:col-span-6 bg-white rounded-4xl p-6 sm:p-8 lg:p-10 border border-paint-border shadow-card flex flex-col justify-between">
+          <div className="lg:col-span-6 bg-white rounded-4xl p-6 sm:p-8 lg:p-10 border border-paint-border shadow-2xl ring-1 ring-paint-border/30 flex flex-col justify-between">
             
             {submitted ? (
               <div className="my-auto py-12 text-center space-y-4">
@@ -388,7 +388,7 @@ export default function ContactSection({ onShowToast, preselectedService }) {
                       onChange={(e) => handleChange('name', e.target.value)}
                       onBlur={() => handleBlur('name')}
                       placeholder="e.g. Rahul Sharma"
-                      className={`w-full px-4 py-3 rounded-2xl bg-paint-surfaceAlt text-paint-charcoal text-xs sm:text-sm border transition-colors focus:outline-none ${
+                      className={`w-full px-4 py-3 rounded-2xl bg-paint-surfaceAlt text-paint-charcoal text-xs sm:text-sm border transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-paint-terracotta/20 ${
                         touched.name && errors.name
                           ? 'border-red-400 bg-red-50/40'
                           : 'border-paint-border focus:border-paint-terracotta'
@@ -414,7 +414,7 @@ export default function ContactSection({ onShowToast, preselectedService }) {
                         onChange={(e) => handleChange('email', e.target.value)}
                         onBlur={() => handleBlur('email')}
                         placeholder="yourname@gmail.com"
-                        className={`w-full px-4 py-3 rounded-2xl bg-paint-surfaceAlt text-paint-charcoal text-xs sm:text-sm border transition-colors focus:outline-none ${
+                        className={`w-full px-4 py-3 rounded-2xl bg-paint-surfaceAlt text-paint-charcoal text-xs sm:text-sm border transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-paint-terracotta/20 ${
                           touched.email && errors.email
                             ? 'border-red-400 bg-red-50/40'
                             : 'border-paint-border focus:border-paint-terracotta'
@@ -438,7 +438,7 @@ export default function ContactSection({ onShowToast, preselectedService }) {
                         onChange={(e) => handleChange('phone', e.target.value)}
                         onBlur={() => handleBlur('phone')}
                         placeholder="+91 94976 22571"
-                        className={`w-full px-4 py-3 rounded-2xl bg-paint-surfaceAlt text-paint-charcoal text-xs sm:text-sm border transition-colors focus:outline-none ${
+                        className={`w-full px-4 py-3 rounded-2xl bg-paint-surfaceAlt text-paint-charcoal text-xs sm:text-sm border transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-paint-terracotta/20 ${
                           touched.phone && errors.phone
                             ? 'border-red-400 bg-red-50/40'
                             : 'border-paint-border focus:border-paint-terracotta'
@@ -455,7 +455,7 @@ export default function ContactSection({ onShowToast, preselectedService }) {
                     <select
                       value={formData.inquiryType}
                       onChange={(e) => handleChange('inquiryType', e.target.value)}
-                      className="w-full px-4 py-3 rounded-2xl bg-paint-surfaceAlt text-paint-charcoal text-xs sm:text-sm border border-paint-border focus:outline-none focus:border-paint-terracotta"
+                      className="w-full px-4 py-3 rounded-2xl bg-paint-surfaceAlt text-paint-charcoal text-xs sm:text-sm border border-paint-border transition-all duration-200 focus:outline-none focus:border-paint-terracotta focus:ring-2 focus:ring-paint-terracotta/20"
                     >
                       <option value="Experienced Painters">Experienced Painters (Residential &amp; Commercial)</option>
                       <option value="Equipment Rental">Equipment Rental (Compressor Machines &amp; Tools)</option>
@@ -484,7 +484,7 @@ export default function ContactSection({ onShowToast, preselectedService }) {
                       onChange={(e) => handleChange('message', e.target.value)}
                       onBlur={() => handleBlur('message')}
                       placeholder="Share your requirements (e.g. rooms to paint, equipment needed, preferred timeline)..."
-                      className={`w-full px-4 py-3 rounded-2xl bg-paint-surfaceAlt text-paint-charcoal text-xs sm:text-sm border resize-none transition-colors focus:outline-none ${
+                      className={`w-full px-4 py-3 rounded-2xl bg-paint-surfaceAlt text-paint-charcoal text-xs sm:text-sm border resize-none transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-paint-terracotta/20 ${
                         touched.message && errors.message
                           ? 'border-red-400 bg-red-50/40'
                           : 'border-paint-border focus:border-paint-terracotta'
@@ -498,7 +498,7 @@ export default function ContactSection({ onShowToast, preselectedService }) {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full py-4 rounded-2xl bg-paint-terracotta hover:bg-[#5E0E00] text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-card hover:shadow-card-hover transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="w-full py-4 rounded-2xl bg-gradient-to-r from-[#821400] to-[#B01E00] text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
                   >
                     {loading ? (
                       <>

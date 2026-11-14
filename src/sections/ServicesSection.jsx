@@ -99,7 +99,13 @@ export default function ServicesSection({ onSelectServiceForInquiry }) {
   ];
 
   return (
-    <section id="services" className="py-20 sm:py-28 bg-white relative border-y border-paint-border">
+    <section id="services" className="py-20 sm:py-28 bg-gradient-to-br from-[#FBF8F5] via-white to-[#FBF8F5] relative border-y border-paint-border">
+
+      {/* Top gradient fade separator */}
+      <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-white/60 to-transparent pointer-events-none" />
+      {/* Bottom gradient fade separator */}
+      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white/60 to-transparent pointer-events-none" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -112,6 +118,11 @@ export default function ServicesSection({ onSelectServiceForInquiry }) {
           <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-paint-charcoal tracking-tight">
             Our Services
           </h2>
+
+          {/* Gradient underline accent bar */}
+          <div className="flex justify-center">
+            <div className="h-[3px] w-12 rounded-full bg-gradient-to-r from-paint-terracotta to-[#E05A3E]" />
+          </div>
 
           <p className="text-base sm:text-lg text-paint-muted leading-relaxed font-medium">
             From quality paints and expert painters to creative wall art and professional equipment rentals,
@@ -133,15 +144,19 @@ export default function ServicesSection({ onSelectServiceForInquiry }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`bg-paint-surfaceAlt rounded-4xl p-7 sm:p-8 border border-paint-border hover:border-paint-terracotta/40 hover:shadow-card transition-all duration-300 flex flex-col justify-between space-y-6 ${
+                whileHover={{ y: -4 }}
+                className={`bg-white rounded-4xl p-7 sm:p-8 border border-paint-border hover:border-paint-terracotta/40 shadow-md hover:shadow-xl hover:border-l-4 hover:border-paint-terracotta transition-all duration-300 flex flex-col justify-between space-y-6 relative overflow-hidden ${
                   isWide ? 'lg:col-span-1 md:col-span-1' : ''
                 }`}
               >
+                {/* Crimson accent strip at top */}
+                <div className="h-1 w-full bg-gradient-to-r from-paint-terracotta to-[#E05A3E] rounded-t-4xl -mx-7 -mt-7 mb-5 sm:-mx-8 sm:-mt-8" />
+
                 <div className="space-y-5">
                   {/* Top Bar: Icon & Badge */}
                   <div className="flex items-center justify-between">
-                    <div className="w-12 h-12 rounded-2xl bg-white border border-paint-border flex items-center justify-center text-paint-terracotta shadow-2xs">
-                      <Icon className="w-6 h-6" />
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-paint-surfaceAlt to-paint-linen border border-paint-border flex items-center justify-center shadow-2xs">
+                      <Icon className="w-6 h-6 text-paint-terracotta" />
                     </div>
                     <span className="text-[11px] font-bold px-3 py-1 rounded-full bg-white text-paint-charcoal border border-paint-border shadow-2xs">
                       {service.badge}
@@ -178,7 +193,7 @@ export default function ServicesSection({ onSelectServiceForInquiry }) {
                 <div className="pt-4 border-t border-paint-border">
                   <button
                     onClick={() => scrollToContact(service.title)}
-                    className="w-full py-3 px-4 rounded-2xl bg-white hover:bg-paint-charcoal hover:text-white text-paint-charcoal border border-paint-border text-xs font-bold flex items-center justify-center gap-2 transition-all shadow-2xs group"
+                    className="w-full py-3 px-4 rounded-2xl bg-white hover:bg-paint-terracotta hover:text-white text-paint-charcoal border border-paint-border text-xs font-bold flex items-center justify-center gap-2 transition-all shadow-2xs group"
                   >
                     <span>Inquire About {service.title}</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -194,10 +209,11 @@ export default function ServicesSection({ onSelectServiceForInquiry }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="bg-paint-charcoal text-white rounded-4xl p-7 sm:p-8 shadow-card flex flex-col justify-between space-y-6 relative overflow-hidden"
+            className="bg-gradient-to-br from-[#0D0705] via-[#1A0A07] to-[#2B1410] text-white rounded-4xl p-7 sm:p-8 shadow-card flex flex-col justify-between space-y-6 relative overflow-hidden"
           >
-            {/* Subtle brand glow in Venetian Crimson */}
-            <div className="absolute top-0 right-0 w-48 h-48 bg-paint-terracotta/30 rounded-full blur-3xl pointer-events-none" />
+            {/* Vibrant crimson glow overlay */}
+            <div className="absolute top-0 right-0 w-56 h-56 bg-paint-terracotta/40 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-[#E05A3E]/20 rounded-full blur-2xl pointer-events-none" />
 
             <div className="relative z-10 space-y-4">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-800 text-stone-300 text-xs font-mono font-bold border border-stone-700">
@@ -236,4 +252,3 @@ export default function ServicesSection({ onSelectServiceForInquiry }) {
     </section>
   );
 }
-

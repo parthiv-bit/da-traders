@@ -67,9 +67,27 @@ export default function ShopDetailsSection() {
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const cardVariants = {
+    hidden: { opacity: 0, y: 24 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: i * 0.08, duration: 0.45, ease: 'easeOut' },
+    }),
+  };
+
   return (
-    <section id="shop" className="py-20 sm:py-28 bg-paint-surface relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="shop" className="py-20 sm:py-28 bg-gradient-to-br from-[#FBF8F5] to-white relative overflow-hidden">
+      {/* Decorative large faded crimson circle */}
+      <div
+        className="absolute -top-32 -right-32 w-[520px] h-[520px] rounded-full pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, rgba(130,20,0,0.07) 0%, rgba(130,20,0,0) 70%)',
+        }}
+        aria-hidden="true"
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
@@ -89,10 +107,11 @@ export default function ShopDetailsSection() {
         </div>
 
         {/* Location & Hours Spotlight Card */}
-        <div className="bg-white rounded-4xl p-6 sm:p-10 border border-paint-border shadow-card mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div className="bg-white rounded-4xl p-6 sm:p-10 border border-paint-border shadow-2xl ring-1 ring-paint-border/50 mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
           <div className="lg:col-span-7 space-y-5">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-200">
+            {/* Opening status pill — richer emerald gradient + pulse */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-emerald-50 to-emerald-100 text-emerald-700 text-xs font-bold border border-emerald-200 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               Open Monday to Saturday: 7:30 AM – 9:00 PM
             </div>
@@ -120,15 +139,18 @@ export default function ShopDetailsSection() {
               </div>
             </div>
 
+            {/* Amenity pills — card-style with richer hover */}
             <div className="pt-3 flex flex-wrap gap-2.5">
               {amenities.map((item, idx) => {
                 const Icon = item.icon;
                 return (
                   <span
                     key={idx}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-paint-surfaceAlt text-paint-charcoal text-xs font-medium border border-paint-border"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white text-paint-charcoal text-xs font-semibold border border-paint-border shadow-sm hover:shadow-md hover:border-paint-terracotta/40 hover:-translate-y-0.5 transition-all duration-200 cursor-default"
                   >
-                    <Icon className="w-3.5 h-3.5 text-paint-terracotta" />
+                    <span className="w-6 h-6 rounded-lg bg-gradient-to-br from-paint-surfaceAlt to-stone-100 flex items-center justify-center shrink-0">
+                      <Icon className="w-3.5 h-3.5 text-paint-terracotta" />
+                    </span>
                     <span>{item.label}</span>
                   </span>
                 );
@@ -149,7 +171,11 @@ export default function ShopDetailsSection() {
               {hours.map((h, i) => (
                 <div
                   key={i}
-                  className="flex items-center justify-between p-3 rounded-2xl bg-white border border-paint-border text-xs sm:text-sm"
+                  className={`flex items-center justify-between p-3 rounded-2xl bg-white border text-xs sm:text-sm ${
+                    h.status === 'Open'
+                      ? 'border-paint-border border-l-4 border-l-emerald-500'
+                      : 'border-paint-border'
+                  }`}
                 >
                   <span className="font-bold text-paint-charcoal">{h.day}</span>
                   <div className="flex items-center gap-2">
@@ -184,12 +210,17 @@ export default function ShopDetailsSection() {
           {verifiedOfferings.map((item, idx) => {
             const Icon = item.icon;
             return (
-              <div
+              <motion.div
                 key={idx}
-                className="p-6 sm:p-7 rounded-3xl bg-white border border-paint-border hover:border-paint-terracotta/40 hover:shadow-card transition-all space-y-3 flex flex-col justify-between"
+                custom={idx}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-40px' }}
+                className="p-6 sm:p-7 rounded-3xl bg-white border border-paint-border hover:border-paint-terracotta/40 shadow-soft hover:shadow-card hover:-translate-y-1 transition-all duration-300 space-y-3 flex flex-col justify-between"
               >
                 <div className="space-y-3">
-                  <div className="w-10 h-10 rounded-2xl bg-paint-surfaceAlt border border-paint-border flex items-center justify-center text-paint-terracotta">
+                  <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#FBF8F5] to-stone-100 border border-paint-border flex items-center justify-center text-paint-terracotta shadow-sm">
                     <Icon className="w-5 h-5" />
                   </div>
                   <h4 className="font-display font-bold text-base text-paint-charcoal">
@@ -199,7 +230,7 @@ export default function ShopDetailsSection() {
                     {item.desc}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>

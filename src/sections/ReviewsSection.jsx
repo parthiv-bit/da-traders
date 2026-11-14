@@ -119,12 +119,16 @@ export default function ReviewsSection({ isReviewModalOpen, onCloseReviewModal, 
     : '5.0';
 
   return (
-    <section id="reviews" className="py-20 sm:py-28 bg-white relative border-y border-paint-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="reviews" className="py-20 sm:py-28 bg-gradient-to-b from-white via-[#FBF8F5] to-white relative border-y border-paint-border">
+      {/* Decorative ambient background blur */}
+      <div className="absolute top-1/4 -right-40 w-96 h-96 rounded-full blur-[140px] opacity-15 bg-paint-terracotta pointer-events-none" />
+      <div className="absolute bottom-1/4 -left-40 w-96 h-96 rounded-full blur-[140px] opacity-15 bg-amber-500/20 pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-paint-surfaceAlt border border-paint-border text-xs font-bold text-paint-charcoal shadow-2xs">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-paint-border text-xs font-bold text-paint-charcoal shadow-2xs">
             <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
             <span>Customer Feedback &amp; Experiences</span>
           </div>
@@ -133,6 +137,8 @@ export default function ReviewsSection({ isReviewModalOpen, onCloseReviewModal, 
             Customer Reviews
           </h2>
 
+          <div className="w-12 h-1 bg-gradient-to-r from-paint-terracotta to-paint-sunshine rounded-full mx-auto" />
+
           <p className="text-base sm:text-lg text-paint-muted leading-relaxed">
             Read verified feedback from homeowners, decorators, and contractors
             who have used DA Traders for products, services, and equipment.
@@ -140,15 +146,17 @@ export default function ReviewsSection({ isReviewModalOpen, onCloseReviewModal, 
         </div>
 
         {/* Rating Overview & Action Banner */}
-        <div className="bg-paint-surfaceAlt rounded-4xl p-6 sm:p-8 border border-paint-border shadow-soft mb-12 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-left">
-            <div className="px-5 py-3 rounded-2xl bg-white border border-paint-border flex flex-col items-center justify-center shadow-2xs">
+        <div className="bg-white rounded-4xl p-6 sm:p-8 border border-paint-border shadow-card mb-12 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-paint-terracotta to-paint-sunshine" />
+
+          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 text-center sm:text-left">
+            <div className="px-6 py-4 rounded-3xl bg-paint-surfaceAlt border border-paint-border flex flex-col items-center justify-center shadow-2xs">
               <span className="font-display font-black text-4xl text-paint-charcoal">
                 {averageRating}
               </span>
               <div className="flex items-center gap-0.5 text-amber-500 my-1">
                 {[1, 2, 3, 4, 5].map((s) => (
-                  <Star key={s} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                  <Star key={s} className="w-4 h-4 fill-amber-400 text-amber-400" />
                 ))}
               </div>
               <span className="text-[10px] text-paint-muted font-bold uppercase tracking-wider">
@@ -156,11 +164,15 @@ export default function ReviewsSection({ isReviewModalOpen, onCloseReviewModal, 
               </span>
             </div>
 
-            <div className="space-y-1">
-              <h3 className="font-display font-bold text-lg text-paint-charcoal">
+            <div className="space-y-1.5">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-bold border border-emerald-200">
+                <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                <span>Verified Client Experiences</span>
+              </div>
+              <h3 className="font-display font-bold text-xl text-paint-charcoal">
                 Genuine Customer Feedback
               </h3>
-              <p className="text-xs sm:text-sm text-paint-muted max-w-md">
+              <p className="text-xs sm:text-sm text-paint-muted max-w-md leading-relaxed">
                 Based on approved community reviews. Have you visited our shop or hired our painters? We would love to hear your experience!
               </p>
             </div>
@@ -168,7 +180,7 @@ export default function ReviewsSection({ isReviewModalOpen, onCloseReviewModal, 
 
           <button
             onClick={() => setFormOpen(!formOpen)}
-            className="px-6 py-3.5 rounded-2xl bg-paint-terracotta hover:bg-[#5E0E00] text-white text-xs sm:text-sm font-bold flex items-center gap-2 shadow-sm transition-all shrink-0 hover:scale-[1.02] active:scale-[0.98]"
+            className="px-7 py-3.5 rounded-2xl bg-gradient-to-r from-paint-terracotta to-[#B01E00] hover:from-[#5E0E00] hover:to-paint-terracotta text-white text-xs sm:text-sm font-bold flex items-center gap-2 shadow-card hover:shadow-card-hover transition-all shrink-0 hover:scale-[1.02] active:scale-[0.98]"
           >
             <MessageSquare className="w-4 h-4" />
             <span>{formOpen ? 'Close Review Form' : 'Write a Review'}</span>
@@ -185,20 +197,22 @@ export default function ReviewsSection({ isReviewModalOpen, onCloseReviewModal, 
               className="overflow-hidden mb-12"
             >
               {submitSuccess ? (
-                <div className="bg-white rounded-3xl p-8 border border-emerald-300 text-center space-y-3">
-                  <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
-                    <CheckCircle2 className="w-6 h-6" />
+                <div className="bg-white rounded-4xl p-8 border border-emerald-300 text-center space-y-3 shadow-card">
+                  <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-2xs">
+                    <CheckCircle2 className="w-7 h-7" />
                   </div>
                   <h4 className="font-display font-bold text-xl text-paint-charcoal">Review Submitted!</h4>
-                  <p className="text-xs text-paint-muted max-w-md mx-auto">
+                  <p className="text-xs text-paint-muted max-w-md mx-auto leading-relaxed">
                     Thank you for sharing your feedback with DA Traders. Newly submitted reviews are reviewed by our team before being displayed publicly.
                   </p>
                 </div>
               ) : (
                 <form
                   onSubmit={handleSubmitReview}
-                  className="bg-white rounded-3xl p-6 sm:p-8 border-2 border-paint-terracotta/40 shadow-card space-y-6"
+                  className="bg-white rounded-4xl p-6 sm:p-8 border border-paint-terracotta/30 shadow-card space-y-6 relative overflow-hidden"
                 >
+                  <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-paint-terracotta via-paint-sunshine to-amber-400" />
+
                   <div className="flex items-center justify-between pb-4 border-b border-paint-border">
                     <div className="flex items-center gap-2">
                       <Sparkles className="w-5 h-5 text-paint-terracotta" />
@@ -206,12 +220,12 @@ export default function ReviewsSection({ isReviewModalOpen, onCloseReviewModal, 
                         Share Your Experience with DA Traders
                       </h3>
                     </div>
-                    <span className="text-xs text-paint-muted">Public reviews undergo moderation</span>
+                    <span className="text-xs font-medium text-paint-muted bg-paint-surfaceAlt px-2.5 py-1 rounded-full border border-paint-border">Public reviews undergo moderation</span>
                   </div>
 
                   {formErrors.general && (
-                    <div className="p-3 rounded-xl bg-red-50 text-red-700 text-xs flex items-center gap-2">
-                      <AlertCircle className="w-4 h-4 shrink-0" />
+                    <div className="p-3.5 rounded-2xl bg-red-50 text-red-700 text-xs flex items-center gap-2 border border-red-200">
+                      <AlertCircle className="w-4 h-4 shrink-0 text-red-600" />
                       <span>{formErrors.general}</span>
                     </div>
                   )}
@@ -237,14 +251,14 @@ export default function ReviewsSection({ isReviewModalOpen, onCloseReviewModal, 
                             <Star
                               className={`w-7 h-7 sm:w-8 sm:h-8 transition-colors ${
                                 isHoveredOrActive
-                                  ? 'fill-amber-400 text-amber-400'
+                                  ? 'fill-amber-400 text-amber-400 drop-shadow-xs'
                                   : 'text-stone-300 stroke-stone-300'
                               }`}
                             />
                           </button>
                         );
                       })}
-                      <span className="text-xs font-bold text-paint-charcoal ml-2">
+                      <span className="text-xs font-bold text-paint-charcoal ml-2 px-3 py-1 rounded-full bg-amber-50 text-amber-800 border border-amber-200">
                         {ratingLabels[hoverRating || newRating]}
                       </span>
                     </div>
@@ -267,9 +281,9 @@ export default function ReviewsSection({ isReviewModalOpen, onCloseReviewModal, 
                           if (formErrors.name) setFormErrors((p) => ({ ...p, name: null }));
                         }}
                         placeholder="e.g. Anand Varma"
-                        className={`w-full px-4 py-2.5 rounded-xl bg-paint-surfaceAlt text-xs text-paint-charcoal border ${
+                        className={`w-full px-4 py-3 rounded-2xl bg-paint-surfaceAlt text-xs text-paint-charcoal border transition-colors ${
                           formErrors.name ? 'border-red-500' : 'border-paint-border'
-                        } focus:outline-none focus:border-paint-terracotta`}
+                        } focus:outline-none focus:border-paint-terracotta focus:ring-2 focus:ring-paint-terracotta/20`}
                       />
                       {formErrors.name && (
                         <p className="text-[11px] text-red-600 font-medium">{formErrors.name}</p>
@@ -283,7 +297,7 @@ export default function ReviewsSection({ isReviewModalOpen, onCloseReviewModal, 
                       <select
                         value={serviceType}
                         onChange={(e) => setServiceType(e.target.value)}
-                        className="w-full px-4 py-2.5 rounded-xl bg-paint-surfaceAlt text-xs text-paint-charcoal border border-paint-border focus:outline-none focus:border-paint-terracotta"
+                        className="w-full px-4 py-3 rounded-2xl bg-paint-surfaceAlt text-xs text-paint-charcoal border border-paint-border focus:outline-none focus:border-paint-terracotta focus:ring-2 focus:ring-paint-terracotta/20"
                       >
                         <option value="Experienced Painters">Experienced Painters</option>
                         <option value="Equipment Rental">Equipment Rental</option>
@@ -305,7 +319,7 @@ export default function ReviewsSection({ isReviewModalOpen, onCloseReviewModal, 
                       value={title}
                       onChange={(e) => setTitle(e.target.value)}
                       placeholder="e.g. Excellent painters and prompt delivery!"
-                      className="w-full px-4 py-2.5 rounded-xl bg-paint-surfaceAlt text-xs text-paint-charcoal border border-paint-border focus:outline-none focus:border-paint-terracotta"
+                      className="w-full px-4 py-3 rounded-2xl bg-paint-surfaceAlt text-xs text-paint-charcoal border border-paint-border focus:outline-none focus:border-paint-terracotta focus:ring-2 focus:ring-paint-terracotta/20"
                     />
                   </div>
 
@@ -322,9 +336,9 @@ export default function ReviewsSection({ isReviewModalOpen, onCloseReviewModal, 
                         if (formErrors.comment) setFormErrors((p) => ({ ...p, comment: null }));
                       }}
                       placeholder="Tell us about your project, the quality of the service, or the finish achieved..."
-                      className={`w-full px-4 py-3 rounded-xl bg-paint-surfaceAlt text-xs text-paint-charcoal border ${
+                      className={`w-full px-4 py-3 rounded-2xl bg-paint-surfaceAlt text-xs text-paint-charcoal border transition-colors ${
                         formErrors.comment ? 'border-red-500' : 'border-paint-border'
-                      } focus:outline-none focus:border-paint-terracotta resize-none`}
+                      } focus:outline-none focus:border-paint-terracotta focus:ring-2 focus:ring-paint-terracotta/20 resize-none`}
                     />
                     {formErrors.comment && (
                       <p className="text-[11px] text-red-600 font-medium">{formErrors.comment}</p>
@@ -336,14 +350,14 @@ export default function ReviewsSection({ isReviewModalOpen, onCloseReviewModal, 
                     <button
                       type="button"
                       onClick={() => setFormOpen(false)}
-                      className="px-5 py-2.5 rounded-xl border border-paint-border text-paint-muted hover:text-paint-charcoal text-xs font-bold"
+                      className="px-5 py-2.5 rounded-2xl border border-paint-border text-paint-muted hover:text-paint-charcoal text-xs font-bold transition-colors"
                     >
                       Cancel
                     </button>
                     <button
                       type="submit"
                       disabled={submitting}
-                      className="px-6 py-2.5 rounded-xl bg-paint-terracotta hover:bg-[#5E0E00] text-white text-xs font-bold flex items-center gap-1.5 shadow-sm transition-all disabled:opacity-60"
+                      className="px-6 py-2.5 rounded-2xl bg-gradient-to-r from-paint-terracotta to-[#B01E00] hover:from-[#5E0E00] hover:to-paint-terracotta text-white text-xs font-bold flex items-center gap-1.5 shadow-sm transition-all disabled:opacity-60"
                     >
                       {submitting ? (
                         <>
@@ -368,12 +382,12 @@ export default function ReviewsSection({ isReviewModalOpen, onCloseReviewModal, 
         <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
           <div className="flex items-center gap-2">
             <span className="text-xs font-bold text-paint-charcoal">Filter by rating:</span>
-            <div className="inline-flex rounded-xl bg-paint-surfaceAlt p-1 border border-paint-border">
+            <div className="inline-flex rounded-2xl bg-white p-1 border border-paint-border shadow-2xs">
               <button
                 onClick={() => setFilterRating('all')}
-                className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
                   filterRating === 'all'
-                    ? 'bg-white text-paint-charcoal shadow-2xs'
+                    ? 'bg-paint-terracotta text-white shadow-xs'
                     : 'text-paint-muted hover:text-paint-charcoal'
                 }`}
               >
@@ -381,9 +395,9 @@ export default function ReviewsSection({ isReviewModalOpen, onCloseReviewModal, 
               </button>
               <button
                 onClick={() => setFilterRating('5')}
-                className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
                   filterRating === '5'
-                    ? 'bg-white text-paint-charcoal shadow-2xs'
+                    ? 'bg-paint-terracotta text-white shadow-xs'
                     : 'text-paint-muted hover:text-paint-charcoal'
                 }`}
               >
@@ -391,9 +405,9 @@ export default function ReviewsSection({ isReviewModalOpen, onCloseReviewModal, 
               </button>
               <button
                 onClick={() => setFilterRating('4')}
-                className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
                   filterRating === '4'
-                    ? 'bg-white text-paint-charcoal shadow-2xs'
+                    ? 'bg-paint-terracotta text-white shadow-xs'
                     : 'text-paint-muted hover:text-paint-charcoal'
                 }`}
               >
@@ -402,33 +416,35 @@ export default function ReviewsSection({ isReviewModalOpen, onCloseReviewModal, 
             </div>
           </div>
 
-          <span className="text-xs text-paint-muted">
+          <span className="text-xs font-medium text-paint-muted">
             Showing {displayedReviews.length} approved review{displayedReviews.length !== 1 ? 's' : ''}
           </span>
         </div>
 
         {/* Reviews Cards Masonry Grid */}
         {loadingReviews ? (
-          <div className="py-12 text-center text-xs text-paint-muted flex items-center justify-center gap-2">
-            <Loader2 className="w-4 h-4 animate-spin text-paint-terracotta" />
-            <span>Loading customer reviews...</span>
+          <div className="py-16 text-center text-xs text-paint-muted flex items-center justify-center gap-2">
+            <Loader2 className="w-5 h-5 animate-spin text-paint-terracotta" />
+            <span className="font-medium">Loading customer reviews...</span>
           </div>
         ) : displayedReviews.length === 0 ? (
-          <div className="p-12 text-center rounded-3xl bg-paint-surfaceAlt border border-paint-border text-xs text-paint-muted space-y-2">
-            <p className="font-bold text-paint-charcoal">No reviews match the selected filter.</p>
+          <div className="p-12 text-center rounded-4xl bg-white border border-paint-border text-xs text-paint-muted space-y-2 shadow-2xs">
+            <p className="font-bold text-paint-charcoal text-sm">No reviews match the selected filter.</p>
             <p>Be the first to leave a review for DA Traders!</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {displayedReviews.map((rev) => (
+            {displayedReviews.map((rev, index) => (
               <motion.div
                 key={rev.id}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="bg-paint-surfaceAlt rounded-3xl p-6 border border-paint-border hover:border-paint-terracotta/40 hover:shadow-card transition-all flex flex-col justify-between space-y-4 min-w-0 overflow-hidden break-words [overflow-wrap:anywhere]"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                className="bg-white rounded-3xl p-6 sm:p-7 border border-paint-border shadow-soft hover:shadow-card hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between space-y-4 min-w-0 overflow-hidden break-words [overflow-wrap:anywhere] group relative"
               >
-                <div className="space-y-3 min-w-0">
-                  {/* Header: Stars */}
+                <div className="space-y-3.5 min-w-0">
+                  {/* Header: Stars & Verified Badge */}
                   <div className="flex items-center justify-between gap-2">
                     <div className="flex items-center gap-1 text-amber-500 shrink-0">
                       {[...Array(5)].map((_, i) => (
@@ -442,11 +458,15 @@ export default function ReviewsSection({ isReviewModalOpen, onCloseReviewModal, 
                         />
                       ))}
                     </div>
+                    <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200 shrink-0 flex items-center gap-1">
+                      <CheckCircle2 className="w-2.5 h-2.5 text-emerald-600" />
+                      <span>Verified Review</span>
+                    </span>
                   </div>
 
                   {/* Review Headline & Body */}
                   {rev.title && (
-                    <h4 className="font-display font-bold text-sm sm:text-base text-paint-charcoal break-words [overflow-wrap:anywhere] [word-break:break-word]">
+                    <h4 className="font-display font-bold text-sm sm:text-base text-paint-charcoal break-words [overflow-wrap:anywhere] [word-break:break-word] leading-snug">
                       "{rev.title}"
                     </h4>
                   )}
@@ -458,7 +478,7 @@ export default function ReviewsSection({ isReviewModalOpen, onCloseReviewModal, 
                   {/* Service Mention Pill if present */}
                   {rev.serviceType && (
                     <div className="pt-1">
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white border border-paint-border text-[11px] font-semibold text-paint-charcoal max-w-full">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-paint-surfaceAlt border border-paint-border text-[11px] font-semibold text-paint-charcoal max-w-full">
                         <span className="w-2 h-2 rounded-full bg-paint-terracotta shrink-0" />
                         <span className="truncate">{rev.serviceType}</span>
                       </span>
@@ -468,15 +488,15 @@ export default function ReviewsSection({ isReviewModalOpen, onCloseReviewModal, 
 
                 {/* Author Footer */}
                 <div className="pt-4 border-t border-paint-border/80 flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-2.5 min-w-0">
-                    <div className="w-8 h-8 rounded-full bg-paint-terracotta/10 text-paint-terracotta font-bold text-xs flex items-center justify-center border border-paint-terracotta/20 shrink-0">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="w-9 h-9 rounded-2xl bg-gradient-to-br from-paint-surfaceAlt to-paint-linen text-paint-terracotta font-extrabold text-xs flex items-center justify-center border border-paint-border shrink-0 shadow-2xs">
                       {rev.name ? rev.name.charAt(0).toUpperCase() : 'C'}
                     </div>
                     <div className="min-w-0">
                       <span className="font-bold text-xs text-paint-charcoal block truncate">
                         {rev.name}
                       </span>
-                      <span className="text-[10px] text-paint-muted block truncate">
+                      <span className="text-[10px] text-paint-muted block truncate font-medium">
                         {rev.role || 'Customer'}
                       </span>
                     </div>

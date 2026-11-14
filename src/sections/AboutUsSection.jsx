@@ -26,8 +26,10 @@ export default function AboutUsSection() {
     },
   ];
 
+  const pillarDelays = [0, 0.1, 0.2, 0.3];
+
   return (
-    <section id="about" className="py-20 sm:py-28 bg-white relative border-y border-paint-border">
+    <section id="about" className="py-20 sm:py-28 bg-gradient-to-b from-white to-[#FBF8F5] relative border-y border-paint-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Tag & Heading */}
@@ -50,49 +52,64 @@ export default function AboutUsSection() {
         {/* Narrative & Atelier Philosophy */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-20">
           
-          <div className="lg:col-span-6 space-y-5 text-sm sm:text-base text-paint-muted leading-relaxed">
-            <h3 className="font-display font-bold text-2xl text-paint-charcoal">
-              More than a shop — a community workshop for color lovers.
-            </h3>
+          {/* Left: Story Text with decorative quotation mark */}
+          <div className="lg:col-span-6 space-y-5 text-sm sm:text-base text-paint-muted leading-relaxed relative">
+            {/* Decorative background quotation mark */}
+            <div
+              aria-hidden="true"
+              className="absolute -top-6 -left-4 text-[160px] leading-none font-serif text-paint-terracotta/10 select-none pointer-events-none z-0"
+            >
+              &ldquo;
+            </div>
 
-            <p>
-              For decades, buying paint meant wandering down cold, fluorescent hardware store aisles,
-              peering at tiny 2-inch paper chips, and guessing how a color might look once dried on your wall.
-            </p>
+            <div className="relative z-10 space-y-5">
+              <h3 className="font-display font-bold text-2xl text-paint-charcoal">
+                More than a shop — a community workshop for color lovers.
+              </h3>
 
-            <p>
-              At <strong>DA Traders</strong>, we rebuilt the entire experience around people, craftsmanship,
-              and reliable service. In our workshop at Myloor, you will find experienced painters ready for booking,
-              rental compressor equipment, custom wall artists, and doorstep paint delivery with a passionate team
-              who genuinely care about the spaces you live and work in.
-            </p>
+              <p>
+                For decades, buying paint meant wandering down cold, fluorescent hardware store aisles,
+                peering at tiny 2-inch paper chips, and guessing how a color might look once dried on your wall.
+              </p>
 
-            <p>
-              Whether you are refreshing a home interior, completing a commercial building, or
-              seeking a bespoke 3D wall feature, our doors are open with honest guidance,
-              dependable equipment, and skilled painters.
-            </p>
+              <p>
+                At <strong>DA Traders</strong>, we rebuilt the entire experience around people, craftsmanship,
+                and reliable service. In our workshop at Myloor, you will find experienced painters ready for booking,
+                rental compressor equipment, custom wall artists, and doorstep paint delivery with a passionate team
+                who genuinely care about the spaces you live and work in.
+              </p>
 
-            <div className="pt-3 flex items-center gap-6">
-              <div>
-                <span className="font-display font-extrabold text-3xl text-paint-charcoal block">5</span>
-                <span className="text-xs text-paint-muted font-medium">Core Services</span>
-              </div>
-              <div className="w-px h-10 bg-paint-border" />
-              <div>
-                <span className="font-display font-extrabold text-3xl text-paint-terracotta block">100%</span>
-                <span className="text-xs text-paint-muted font-medium">Dedicated Support</span>
-              </div>
-              <div className="w-px h-10 bg-paint-border" />
-              <div>
-                <span className="font-display font-extrabold text-3xl text-paint-charcoal block">6 Days</span>
-                <span className="text-xs text-paint-muted font-medium">Mon – Sat Open</span>
+              <p>
+                Whether you are refreshing a home interior, completing a commercial building, or
+                seeking a bespoke 3D wall feature, our doors are open with honest guidance,
+                dependable equipment, and skilled painters.
+              </p>
+
+              {/* Stats Row — upgraded */}
+              <div className="pt-3 flex items-center gap-6">
+                <div className="text-center">
+                  <span className="block w-2 h-2 rounded-full bg-paint-terracotta mx-auto mb-1" />
+                  <span className="font-display font-extrabold text-5xl text-paint-charcoal block leading-none">5</span>
+                  <span className="text-xs text-paint-muted font-medium">Core Services</span>
+                </div>
+                <div className="w-px h-14 bg-paint-border" />
+                <div className="text-center">
+                  <span className="block w-2 h-2 rounded-full bg-paint-terracotta mx-auto mb-1" />
+                  <span className="font-display font-extrabold text-5xl text-paint-terracotta block leading-none">100%</span>
+                  <span className="text-xs text-paint-muted font-medium">Dedicated Support</span>
+                </div>
+                <div className="w-px h-14 bg-paint-border" />
+                <div className="text-center">
+                  <span className="block w-2 h-2 rounded-full bg-paint-terracotta mx-auto mb-1" />
+                  <span className="font-display font-extrabold text-5xl text-paint-charcoal block leading-none">6 Days</span>
+                  <span className="text-xs text-paint-muted font-medium">Mon – Sat Open</span>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Right: Atelier Studio Comparison Card */}
-          <div className="lg:col-span-6 bg-paint-surfaceAlt rounded-4xl p-6 sm:p-10 border border-paint-border shadow-soft space-y-6">
+          <div className="lg:col-span-6 bg-gradient-to-br from-[#FBF8F5] via-white to-[#FDF5EF] rounded-4xl p-6 sm:p-10 border-l-4 border-paint-terracotta border border-paint-border shadow-soft space-y-6">
             <div className="flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-paint-terracotta" />
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-paint-charcoal">
@@ -144,12 +161,20 @@ export default function AboutUsSection() {
           {pillars.map((pillar, i) => {
             const Icon = pillar.icon;
             return (
-              <div
+              <motion.div
                 key={i}
-                className="p-6 rounded-3xl bg-paint-surfaceAlt border border-paint-border hover:border-paint-terracotta/40 transition-all hover:shadow-card space-y-3"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: pillarDelays[i] }}
+                className="p-6 rounded-3xl bg-white border border-paint-border hover:border-paint-terracotta/40 transition-all hover:shadow-card hover:-translate-y-1 shadow-soft space-y-3"
               >
-                <div className="w-10 h-10 rounded-2xl bg-white border border-paint-border flex items-center justify-center text-paint-terracotta shadow-2xs">
-                  <Icon className="w-5 h-5" />
+                {/* Small colored dot badge above icon */}
+                <div className="flex flex-col items-start gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-paint-terracotta block" />
+                  <div className="w-10 h-10 rounded-2xl bg-white border border-paint-border flex items-center justify-center text-paint-terracotta shadow-2xs">
+                    <Icon className="w-5 h-5" />
+                  </div>
                 </div>
                 <h4 className="font-display font-bold text-base text-paint-charcoal">
                   {pillar.title}
@@ -157,7 +182,7 @@ export default function AboutUsSection() {
                 <p className="text-xs text-paint-muted leading-relaxed">
                   {pillar.desc}
                 </p>
-              </div>
+              </motion.div>
             );
           })}
         </div>
@@ -166,4 +191,3 @@ export default function AboutUsSection() {
     </section>
   );
 }
-

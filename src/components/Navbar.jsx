@@ -49,19 +49,20 @@ export default function Navbar({ onOpenReviewModal }) {
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled
-            ? 'bg-paint-surface/95 backdrop-blur-md py-3.5 shadow-soft border-b border-paint-border'
+            ? 'bg-white/90 backdrop-blur-xl py-3.5 shadow-lg border-b border-paint-border/50'
             : 'bg-transparent py-5 sm:py-6'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          {/* Logo / Brand Mark */}
+
+          {/* Logo / Brand Mark — scale on hover */}
           <a
             href="#hero"
             onClick={(e) => handleLinkClick(e, '#hero')}
             className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-paint-terracotta rounded-lg"
             aria-label="DA Traders Home"
           >
-            <div className="flex flex-col items-center group-hover:scale-105 transition-transform shrink-0">
+            <div className="flex flex-col items-center transition-transform duration-300 group-hover:scale-110 shrink-0">
               <img
                 src="/logo-mark.png"
                 alt="DA Traders Logo"
@@ -79,8 +80,8 @@ export default function Navbar({ onOpenReviewModal }) {
             </div>
           </a>
 
-          {/* Desktop Nav Links */}
-          <nav className="hidden md:flex items-center gap-1 bg-paint-surfaceAlt/90 backdrop-blur-sm p-1.5 rounded-full border border-paint-border shadow-2xs">
+          {/* Desktop Nav Links — frosted glass pill container */}
+          <nav className="hidden md:flex items-center gap-1 bg-white/70 backdrop-blur-sm p-1.5 rounded-full border border-paint-border shadow-2xs">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
               return (
@@ -90,14 +91,14 @@ export default function Navbar({ onOpenReviewModal }) {
                   onClick={(e) => handleLinkClick(e, link.href)}
                   className={`relative px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all ${
                     isActive
-                      ? 'text-paint-charcoal font-bold'
+                      ? 'text-white font-bold'
                       : 'text-paint-muted hover:text-paint-charcoal hover:bg-white/60'
                   }`}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="active-pill"
-                      className="absolute inset-0 bg-white rounded-full shadow-xs border border-paint-border/60 -z-10"
+                      className="absolute inset-0 bg-paint-terracotta rounded-full shadow-xs -z-10"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -121,10 +122,14 @@ export default function Navbar({ onOpenReviewModal }) {
               <span>Leave a Review</span>
             </a>
 
+            {/* Primary "Visit Shop" with gradient background */}
             <a
               href="#contact"
               onClick={(e) => handleLinkClick(e, '#contact')}
-              className="px-4 py-2 rounded-xl bg-paint-terracotta hover:bg-[#5E0E00] text-white text-xs font-bold flex items-center gap-1.5 transition-all shadow-sm"
+              className="px-4 py-2 rounded-xl text-white text-xs font-bold flex items-center gap-1.5 transition-all shadow-sm hover:opacity-90 hover:shadow-md"
+              style={{
+                background: 'linear-gradient(135deg, #821400 0%, #B01E00 100%)',
+              }}
             >
               <MapPin className="w-3.5 h-3.5" />
               <span>Visit Shop</span>
@@ -153,30 +158,63 @@ export default function Navbar({ onOpenReviewModal }) {
         </div>
       </header>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Drawer Menu — full-width with header area */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="fixed inset-x-4 top-20 z-40 bg-white rounded-3xl p-6 border border-paint-border shadow-floating md:hidden space-y-4"
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.22, ease: 'easeOut' }}
+            className="fixed inset-x-0 top-0 z-30 bg-white/95 backdrop-blur-xl border-b border-paint-border shadow-floating md:hidden"
           >
-            <div className="flex flex-col gap-2">
-              {navLinks.map((link) => (
-                <a
-                  key={link.id}
-                  href={link.href}
-                  onClick={(e) => handleLinkClick(e, link.href)}
-                  className="px-4 py-3 rounded-2xl text-sm font-bold text-paint-charcoal hover:bg-paint-surfaceAlt transition-colors flex items-center justify-between"
-                >
-                  <span>{link.label}</span>
-                  <span className="text-xs text-paint-muted">→</span>
-                </a>
-              ))}
+            {/* Mobile Menu Header */}
+            <div
+              className="px-5 pt-20 pb-5"
+              style={{
+                background: 'linear-gradient(135deg, #821400 0%, #B01E00 100%)',
+              }}
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <span className="font-display font-extrabold text-xl text-white tracking-tight block">
+                    DA Traders
+                  </span>
+                  <span className="text-[11px] uppercase tracking-wider font-semibold text-white/70">
+                    Paint Shop &amp; Services
+                  </span>
+                </div>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-bold border border-white/30">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                  Open Now
+                </span>
+              </div>
             </div>
 
-            <div className="pt-3 border-t border-paint-border grid grid-cols-2 gap-2">
+            {/* Nav Links */}
+            <div className="px-4 py-4 flex flex-col gap-1">
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.id;
+                return (
+                  <a
+                    key={link.id}
+                    href={link.href}
+                    onClick={(e) => handleLinkClick(e, link.href)}
+                    className={`px-4 py-3.5 rounded-2xl text-sm font-bold transition-colors flex items-center justify-between ${
+                      isActive
+                        ? 'bg-paint-terracotta text-white'
+                        : 'text-paint-charcoal hover:bg-paint-surfaceAlt'
+                    }`}
+                  >
+                    <span>{link.label}</span>
+                    <span className={`text-xs ${isActive ? 'text-white/70' : 'text-paint-muted'}`}>→</span>
+                  </a>
+                );
+              })}
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="px-4 pb-6 pt-2 border-t border-paint-border grid grid-cols-2 gap-2">
               <a
                 href="#reviews"
                 onClick={(e) => {
@@ -191,7 +229,10 @@ export default function Navbar({ onOpenReviewModal }) {
               <a
                 href="#contact"
                 onClick={(e) => handleLinkClick(e, '#contact')}
-                className="py-3 px-3 rounded-2xl bg-paint-terracotta text-white text-xs font-bold text-center flex items-center justify-center gap-1.5"
+                className="py-3 px-3 rounded-2xl text-white text-xs font-bold text-center flex items-center justify-center gap-1.5 hover:opacity-90 transition-opacity"
+                style={{
+                  background: 'linear-gradient(135deg, #821400 0%, #B01E00 100%)',
+                }}
               >
                 <MapPin className="w-3.5 h-3.5" />
                 <span>Visit &amp; Contact</span>
