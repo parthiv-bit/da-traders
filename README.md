@@ -2,6 +2,10 @@
 
 > Complete business website for **DA Traders** (Mannamkonum, Kerala): Quality paints, experienced painters, compressor equipment rentals, decorative wall murals, 3D wall art, and doorstep delivery service.
 
+- **Live Production URL:** [https://da-traders.web.app](https://da-traders.web.app)
+- **GitHub Repository:** [https://github.com/parthiv-bit/da-traders](https://github.com/parthiv-bit/da-traders)
+- **Staff Admin Portal:** [https://da-traders.web.app/admin](https://da-traders.web.app/admin)
+
 ---
 
 ## 🎨 Overview & Purpose
