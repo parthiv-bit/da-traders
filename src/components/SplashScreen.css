@@ -1,0 +1,120 @@
+/* ==============================================================================
+   CINEMATIC SPLASH SCREEN — DYNAMIC
+   Atmospheric crimson & teal textured canvas matching brand artwork
+   ============================================================================== */
+
+.splash-container {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0d0403;
+  overflow: hidden;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Atmospheric Multi-Hue Radial Glow matching uploaded artwork */
+.splash-bg-glow {
+  position: absolute;
+  inset: 0;
+  background: 
+    /* Bottom-left vibrant cyan/teal glow */
+    radial-gradient(circle at 12% 82%, rgba(20, 184, 166, 0.55) 0%, rgba(14, 116, 144, 0.3) 25%, transparent 55%),
+    /* Center & right warm crimson red glow */
+    radial-gradient(circle at 58% 46%, rgba(175, 28, 0, 0.75) 0%, rgba(130, 20, 0, 0.45) 30%, transparent 68%),
+    /* Top-left subtle wine glow */
+    radial-gradient(circle at 18% 22%, rgba(120, 18, 10, 0.4) 0%, transparent 45%),
+    /* Dark perimeter foundation */
+    #0c0302;
+  pointer-events: none;
+}
+
+/* High-Definition Analog Film Noise / Grain */
+.splash-grain-overlay {
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.16'/%3E%3C/svg%3E");
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  opacity: 0.85;
+}
+
+/* Perimeter Vignette */
+.splash-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, transparent 40%, rgba(5, 1, 1, 0.75) 100%);
+  pointer-events: none;
+}
+
+/* Logo container without any artificial shimmer sweep */
+.splash-logo-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Uppercase DYNAMIC in Bauhaus 93 */
+.splash-wordmark-bauhaus {
+  font-family: 'Bauhaus 93', sans-serif;
+  color: #FFFFFF;
+  letter-spacing: 0.06em;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8), 0 1px 3px rgba(0, 0, 0, 0.9);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* Tagline: Bringing Life to Every Space */
+.splash-tagline {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-style: italic;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+}
+
+/* Skip Button */
+.splash-skip-btn {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  padding: 0.45rem 1rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  z-index: 20;
+}
+
+.splash-skip-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 640px) {
+  .splash-skip-btn {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.65rem;
+  }
+}

@@ -1,0 +1,78 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isValidEmail(email) {
+      return email is string && email.matches('^.+@.+\\..+$');
+    }
+
+    // 1. Inquiries Collection (Strict privacy: Only admins can read customer inquiries)
+    match /inquiries/{inquiryId} {
+      allow create: if request.resource.data.name is string
+                    && request.resource.data.name.size() >= 2
+                    && isValidEmail(request.resource.data.email)
+                    && request.resource.data.phone is string
+                    && request.resource.data.phone.size() >= 7
+                    && request.resource.data.message is string
+                    && request.resource.data.message.size() >= 5
+                    && request.resource.data.status == 'new';
+
+      allow read, update, delete: if isAuthenticated();
+    }
+
+    // 2. Reviews Collection (Public reads approved only; Public submits pending only; Admins moderate)
+    match /reviews/{reviewId} {
+      // Public can only read approved reviews; Admins can read all
+      allow read: if resource.data.status == 'approved' || isAuthenticated();
+
+      // Visitors can create reviews, but they MUST be status 'pending'
+      allow create: if request.resource.data.name is string
+                    && request.resource.data.name.size() >= 2
+                    && request.resource.data.rating is number
+                    && request.resource.data.rating >= 1
+                    && request.resource.data.rating <= 5
+                    && request.resource.data.comment is string
+                    && request.resource.data.comment.size() >= 10
+                    && request.resource.data.status == 'pending';
+
+      // Only authenticated admins can approve, update or delete reviews
+      allow update, delete: if isAuthenticated();
+    }
+
+    // 3. Newsletter Subscribers
+    match /subscribers/{subscriberId} {
+      allow create: if isValidEmail(request.resource.data.email)
+                    && request.resource.data.status in ['subscribed', 'unsubscribed'];
+      allow read, update, delete: if isAuthenticated();
+    }
+
+    // 4. Products & Services (Public view, Admin manage)
+    match /products/{productId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    // 5. Gallery Images (Public view, Admin manage)
+    match /gallery/{imageId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    // 6. Business Settings (Public view, Admin manage)
+    match /settings/{docId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    // Deny all other access by default
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
+

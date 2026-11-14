@@ -1,0 +1,36 @@
+import {
+  collection,
+  doc,
+  setDoc,
+  addDoc,
+  getDocs,
+  getDoc,
+  updateDoc,
+  deleteDoc,
+  query,
+  where,
+  orderBy,
+  limit,
+  serverTimestamp,
+  Timestamp,
+} from 'firebase/firestore';
+import { db, isFirebaseConfigured } from './firebase';
+
+export {
+  db,
+  isFirebaseConfigured,
+  collection,
+  doc,
+  setDoc,
+  addDoc,
+  getDocs,
+  getDoc,
+  updateDoc,
+  deleteDoc,
+  query,
+  where,
+  orderBy,
+  limit,
+  serverTimestamp,
+  Timestamp,
+};

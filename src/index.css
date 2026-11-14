@@ -1,0 +1,89 @@
+@font-face {
+  font-family: 'Bauhaus 93';
+  src: local('Bauhaus 93'), local('BAUHS93'), url('/fonts/BAUHS93.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-surface: #FAF6F5;
+    --color-surface-alt: #F4ECE9;
+    --color-charcoal: #1A0A07;
+    --color-primary: #821400;
+  }
+
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-charcoal);
+    overflow-x: hidden;
+  }
+
+  /* Custom focus outline for accessible keyboard navigation */
+  :focus-visible {
+    outline: 2px solid #821400;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* Subtle grain / texture for artisanal paint aesthetic */
+  .bg-subtle-grain {
+    background-image: radial-gradient(rgba(26, 10, 7, 0.04) 1px, transparent 0);
+    background-size: 24px 24px;
+  }
+
+  /* Roller paint stroke ribbon effect */
+  .paint-stroke-bg {
+    position: relative;
+  }
+  .paint-stroke-bg::before {
+    content: '';
+    position: absolute;
+    inset: -6px -12px;
+    background: currentColor;
+    opacity: 0.18;
+    border-radius: 8px 18px 10px 16px;
+    transform: rotate(-1.5deg);
+    z-index: -1;
+  }
+
+  /* Custom sleek scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.04);
+    border-radius: 8px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.35);
+  }
+
+  .font-bauhaus {
+    font-family: 'Bauhaus 93', sans-serif;
+  }
+}
