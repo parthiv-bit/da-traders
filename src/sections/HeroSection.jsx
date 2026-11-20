@@ -147,10 +147,10 @@ export default function HeroSection({ onOpenReviewModal }) {
               transition={{ duration: 0.9, delay: 0.1, type: 'spring', stiffness: 70, damping: 18 }}
               className="font-display font-extrabold text-4xl sm:text-6xl xl:text-8xl text-paint-charcoal tracking-tight leading-[1.06]"
             >
-              Where color is crafted with{' '}
+              Where Service Meets{' '}
               <span className="relative inline-block text-paint-terracotta">
-                passion &amp; care.
-                
+                Beautiful Spaces.
+
                 {/* Authentic Paint Stroke Ribbon Highlight (Organic Vector Underline) */}
                 <svg
                   className="absolute -bottom-2 sm:-bottom-3 left-0 w-full h-3 sm:h-4 text-paint-terracotta/25 overflow-visible pointer-events-none"
@@ -312,9 +312,8 @@ export default function HeroSection({ onOpenReviewModal }) {
                         key={shade.code}
                         type="button"
                         onClick={() => setActiveShade(shade)}
-                        className={`group relative h-12 rounded-2xl transition-all duration-300 flex items-center justify-center ${
-                          isSelected ? 'scale-105 shadow-md ring-2 ring-paint-charcoal ring-offset-2' : 'hover:scale-105 opacity-90 hover:opacity-100'
-                        }`}
+                        className={`group relative h-12 rounded-2xl transition-all duration-300 flex items-center justify-center ${isSelected ? 'scale-105 shadow-md ring-2 ring-paint-charcoal ring-offset-2' : 'hover:scale-105 opacity-90 hover:opacity-100'
+                          }`}
                         style={{ backgroundColor: shade.hex }}
                         title={`${shade.name} (${shade.hex})`}
                       >

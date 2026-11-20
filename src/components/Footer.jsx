@@ -177,7 +177,7 @@ export default function Footer({ onShowToast, onNavigateToAdmin }) {
                   DA Traders
                 </span>
                 <span className="text-[11px] text-stone-400 font-medium">
-                  Paint Shop &amp; Painting Services
+                  Bringing life to every space
                 </span>
               </div>
             </div>

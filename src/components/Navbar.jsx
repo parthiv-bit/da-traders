@@ -75,7 +75,7 @@ export default function Navbar({ onOpenReviewModal }) {
                 DA Traders
               </span>
               <span className="text-[10px] uppercase tracking-wider font-semibold text-paint-muted">
-                Paint Shop &amp; Services
+                Bringing life to every space
               </span>
             </div>
           </a>
@@ -181,7 +181,7 @@ export default function Navbar({ onOpenReviewModal }) {
                     DA Traders
                   </span>
                   <span className="text-[11px] uppercase tracking-wider font-semibold text-white/70">
-                    Paint Shop &amp; Services
+                    Bringing life to every space
                   </span>
                 </div>
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-bold border border-white/30">
