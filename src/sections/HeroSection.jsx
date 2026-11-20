@@ -148,35 +148,8 @@ export default function HeroSection({ onOpenReviewModal }) {
               className="font-display font-extrabold text-4xl sm:text-6xl xl:text-8xl text-paint-charcoal tracking-tight leading-[1.06]"
             >
               Where Service Meets{' '}
-              <span className="relative inline-block text-paint-terracotta">
-                Beautiful Spaces.
-
-                {/* Authentic Paint Stroke Ribbon Highlight (Organic Vector Underline) */}
-                <svg
-                  className="absolute -bottom-2 sm:-bottom-3 left-0 w-full h-3 sm:h-4 text-paint-terracotta/25 overflow-visible pointer-events-none"
-                  viewBox="0 0 300 16"
-                  fill="none"
-                  preserveAspectRatio="none"
-                >
-                  <motion.path
-                    d="M 2 12 Q 75 3, 150 10 T 298 7"
-                    stroke="currentColor"
-                    strokeWidth="8"
-                    strokeLinecap="round"
-                    initial={{ pathLength: 0 }}
-                    animate={{ pathLength: 1 }}
-                    transition={{ duration: 1.1, delay: 0.7, ease: 'easeOut' }}
-                  />
-                  <motion.path
-                    d="M 10 14 Q 85 5, 160 11 T 290 9"
-                    stroke="#821400"
-                    strokeWidth="3.5"
-                    strokeLinecap="round"
-                    initial={{ pathLength: 0 }}
-                    animate={{ pathLength: 1 }}
-                    transition={{ duration: 1.0, delay: 0.85, ease: 'easeOut' }}
-                  />
-                </svg>
+              <span className="text-paint-terracotta">
+                Perfection.
               </span>
             </motion.h1>
 
