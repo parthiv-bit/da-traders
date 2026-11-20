@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Heart, Sparkles, CheckCircle2, ShieldCheck, Paintbrush, Users, Award, BookOpen } from 'lucide-react';
+import { Sparkles, CheckCircle2, ShieldCheck, Paintbrush, Users, Award, BookOpen } from 'lucide-react';
 
 export default function AboutUsSection() {
   const pillars = [
@@ -31,16 +31,11 @@ export default function AboutUsSection() {
   return (
     <section id="about" className="py-20 sm:py-28 bg-gradient-to-b from-white to-[#FBF8F5] relative border-y border-paint-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Tag & Heading */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-paint-surfaceAlt border border-paint-border text-xs font-bold text-paint-charcoal shadow-2xs">
-            <Heart className="w-3.5 h-3.5 text-paint-terracotta fill-paint-terracotta" />
-            <span>Our Story &amp; Craft</span>
-          </div>
 
+        {/* Section Heading */}
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-paint-charcoal tracking-tight">
-            About DA Traders
+            What Defines Us
           </h2>
 
           <p className="text-base sm:text-lg text-paint-muted leading-relaxed">
@@ -51,21 +46,12 @@ export default function AboutUsSection() {
 
         {/* Narrative & Atelier Philosophy */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-20">
-          
-          {/* Left: Story Text with decorative quotation mark */}
-          <div className="lg:col-span-6 space-y-5 text-sm sm:text-base text-paint-muted leading-relaxed relative">
-            {/* Decorative background quotation mark */}
-            <div
-              aria-hidden="true"
-              className="absolute -top-6 -left-4 text-[160px] leading-none font-serif text-paint-terracotta/10 select-none pointer-events-none z-0"
-            >
-              &ldquo;
-            </div>
 
-            <div className="relative z-10 space-y-5">
-              <h3 className="font-display font-bold text-2xl text-paint-charcoal">
-                More than a shop — a community workshop for color lovers.
-              </h3>
+          {/* Left: Story Text */}
+          <div className="lg:col-span-6 space-y-5 text-sm sm:text-base text-paint-muted leading-relaxed">
+            <h3 className="font-display font-bold text-2xl text-paint-charcoal">
+              More than a shop — a community workshop for color lovers.
+            </h3>
 
               <p>
                 For decades, buying paint meant wandering down cold, fluorescent hardware store aisles,
@@ -105,7 +91,6 @@ export default function AboutUsSection() {
                   <span className="text-xs text-paint-muted font-medium">Mon – Sat Open</span>
                 </div>
               </div>
-            </div>
           </div>
 
           {/* Right: Atelier Studio Comparison Card */}
